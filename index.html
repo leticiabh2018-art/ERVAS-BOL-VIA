@@ -1,0 +1,723 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ervas e Alimentos Tradicionais da Bolívia</title>
+<meta name="description" content="Guia de ervas medicinais, tubérculos e alimentos típicos da Bolívia, com conversão de libras e contato direto via WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --ink: #1d2433;
+    --muted: #5b6475;
+    --line: #e3e1da;
+    --lago: #1f3a5f;
+    --aguayo: #b81d5b;
+    --quinoa: #d9a21b;
+    --coca: #3b7a4d;
+    --tuber: #7a4b2a;
+    --focus: #1f3a5f;
+    --head: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161f;
+      --surface: #1a2030;
+      --ink: #eceae4;
+      --muted: #a4abba;
+      --line: #2b3347;
+      --lago: #8fb0e0;
+      --aguayo: #f06fa0;
+      --quinoa: #f0bf4a;
+      --coca: #7cc08f;
+      --tuber: #d49a6a;
+      --focus: #f0bf4a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  /* Faixa decorativa inspirada no aguayo andino */
+  .aguayo {
+    height: 44px;
+    background:
+      repeating-linear-gradient(90deg,
+        #b81d5b 0 38px, #d9a21b 38px 52px, #1f3a5f 52px 96px,
+        #3b7a4d 96px 108px, #e8e2d2 108px 114px, #b81d5b 114px 150px,
+        #1f3a5f 150px 158px, #d9a21b 158px 196px);
+    border-bottom: 6px solid #1d2433;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero { padding: 56px 0 28px; }
+  h1 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    max-width: 14ch;
+  }
+  .lead { font-size: 1.2rem; color: var(--muted); max-width: 56ch; margin: 0; }
+
+  nav.index {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+  }
+  nav.index .wrap { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.index a {
+    font-family: var(--head); font-weight: 500; font-size: .95rem;
+    text-decoration: none; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface);
+  }
+  nav.index a:hover { border-color: var(--ink); }
+
+  .search { margin: 28px 0 8px; }
+  .search label { font-family: var(--head); font-weight: 700; display: block; margin-bottom: 6px; }
+  .search input {
+    width: 100%; font: inherit; padding: 12px 14px;
+    border: 2px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: var(--ink);
+  }
+  .search input:focus { border-color: var(--lago); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--lago) 25%, transparent); }
+  #nenhum { display: none; color: var(--muted); margin: 12px 0 0; }
+
+  section { padding: 40px 0 8px; scroll-margin-top: 56px; }
+  section h2 {
+    font-family: var(--head); font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 0 0 6px; letter-spacing: -0.01em;
+  }
+  section > p.intro { margin: 0 0 20px; color: var(--muted); max-width: 60ch; }
+
+  ul.lista { list-style: none; margin: 0; padding: 0; }
+  ul.lista li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 7px solid var(--cor);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .item-img {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px dashed var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-content { flex-grow: 1; min-width: 220px; }
+  ul.lista .nome { font-family: var(--head); font-weight: 700; font-size: 1.15rem; }
+  ul.lista .cient { font-style: italic; color: var(--muted); font-size: .95rem; margin-left: 4px; }
+  ul.lista p { margin: 4px 0 12px; }
+
+  .item-action {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+  .btn-item-whats {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #25d366;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+  }
+  .btn-item-whats:hover { background-color: #20ba5a; }
+  .btn-item-whats svg { width: 16px; height: 16px; fill: currentColor; }
+
+  #ervas, #ossos { --cor: var(--coca); }
+  #ossos { --cor: var(--aguayo); }
+  #alimentos { --cor: var(--quinoa); }
+  #alimentos ul.lista li { --cor: var(--quinoa); }
+
+  .venda { --cor: var(--lago); }
+  table {
+    width: 100%; border-collapse: collapse; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  th { font-family: var(--head); background: var(--lago); color: #fff; font-weight: 700; }
+  @media (prefers-color-scheme: dark) { th { color: #12161f; } }
+  tr:last-child td { border-bottom: none; }
+
+  .calc {
+    margin-top: 24px; padding: 20px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 7px solid var(--lago); border-radius: 8px;
+  }
+  .calc h3 { font-family: var(--head); margin: 0 0 14px; font-size: 1.2rem; }
+  .campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .campos label { font-family: var(--head); font-weight: 500; font-size: .95rem; display: block; margin-bottom: 4px; }
+  .campos input {
+    width: 100%; font: inherit; padding: 10px 12px;
+    border: 2px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink);
+  }
+  .resultado { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 18px; }
+  .resultado div { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+  .resultado span { display: block; color: var(--muted); font-size: .9rem; }
+  .resultado strong { font-family: var(--head); font-size: 1.4rem; }
+
+  .localizacao-box {
+    margin: 36px 0; padding: 22px 24px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 7px solid var(--aguayo); border-radius: 8px;
+  }
+  .localizacao-box h3 { font-family: var(--head); margin: 0 0 8px; font-size: 1.2rem; }
+  .localizacao-box p { margin: 0; color: var(--muted); }
+
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--head);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .whatsapp-float:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+  }
+  .whatsapp-float svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .aviso {
+    margin: 32px 0 0; padding: 18px 20px;
+    border: 2px dashed var(--line); border-radius: 8px;
+    color: var(--muted); font-size: .95rem;
+  }
+  footer { padding: 36px 0 76px; color: var(--muted); font-size: .9rem; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="aguayo" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Ervas e alimentos tradicionais da Bolívia</h1>
+    <p class="lead">Plantas medicinais dos Andes, tubérculos e grãos do Altiplano, com tabela de conversão e atendimento via WhatsApp.</p>
+  </div>
+</header>
+
+<nav class="index" aria-label="Seções do guia">
+  <div class="wrap">
+    <a href="#ervas">Ervas medicinais</a>
+    <a href="#ossos">Ossos e músculos</a>
+    <a href="#alimentos">Alimentos</a>
+    <a href="#venda">Medidas e libras</a>
+    <a href="#local">Localização</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="search">
+    <label for="busca">Buscar no guia</label>
+    <input id="busca" type="search" placeholder="Digite um nome ou um sintoma, como tosse ou rins" autocomplete="off">
+    <p id="nenhum">Nenhum item encontrado. Tente outra palavra.</p>
+  </div>
+
+  <section id="ervas">
+    <h2>Ervas medicinais gerais e tradicionais</h2>
+    <p class="intro">Usadas há gerações para respiração, digestão, fígado e rins.</p>
+    <ul class="lista">
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Wira" alt="Wira Wira" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Wira Wira</span><span class="cient">Gnaphalium vira-vira</span>
+          <p>Sistema respiratório, gripe, tosse, bronquite e dores de garganta.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20a%20erva%20Wira%20Wira." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Coca" alt="Hoja de Coca" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Hoja de Coca</span><span class="cient">Erythroxylum coca</span>
+          <p>Mal da altitude (soroche), digestão, fadiga e dores de estômago.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Hoja%20de%20Coca." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Chacha" alt="Chachacoma" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Chachacoma</span><span class="cient">Senecio eriophyton</span>
+          <p>Dores de estômago intensas, indigestão, cólicas e náuseas.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Chachacoma." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Kullku" alt="Kullku" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Kullku / Cullco</span><span class="cient">Aciachne pulvinata</span>
+          <p>Problemas no fígado, vesícula e purificação do sangue.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Kullku%20/%20Cullco." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Muna" alt="Muña" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Muña</span><span class="cient">Minthostachys mollis</span>
+          <p>A "hortelã dos Andes". Excelente para digestão, gases e dores abdominais.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Muña." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Airampo" alt="Airampo" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Airampo</span><span class="cient">Opuntia soehrensii</span>
+          <p>Febre, aftas, feridas na boca e regulação da pressão arterial.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Airampo." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ervas e Alimentos Tradicionais da Bolívia</title>
+<meta name="description" content="Guia de ervas medicinais, tubérculos e alimentos típicos da Bolívia, com conversão de libras e contato direto via WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --ink: #1d2433;
+    --muted: #5b6475;
+    --line: #e3e1da;
+    --lago: #1f3a5f;
+    --aguayo: #b81d5b;
+    --quinoa: #d9a21b;
+    --coca: #3b7a4d;
+    --tuber: #7a4b2a;
+    --focus: #1f3a5f;
+    --head: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161f;
+      --surface: #1a2030;
+      --ink: #eceae4;
+      --muted: #a4abba;
+      --line: #2b3347;
+      --lago: #8fb0e0;
+      --aguayo: #f06fa0;
+      --quinoa: #f0bf4a;
+      --coca: #7cc08f;
+      --tuber: #d49a6a;
+      --focus: #f0bf4a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  /* Faixa decorativa inspirada no aguayo andino */
+  .aguayo {
+    height: 44px;
+    background:
+      repeating-linear-gradient(90deg,
+        #b81d5b 0 38px, #d9a21b 38px 52px, #1f3a5f 52px 96px,
+        #3b7a4d 96px 108px, #e8e2d2 108px 114px, #b81d5b 114px 150px,
+        #1f3a5f 150px 158px, #d9a21b 158px 196px);
+    border-bottom: 6px solid #1d2433;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero { padding: 56px 0 28px; }
+  h1 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    max-width: 14ch;
+  }
+  .lead { font-size: 1.2rem; color: var(--muted); max-width: 56ch; margin: 0; }
+
+  nav.index {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+  }
+  nav.index .wrap { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.index a {
+    font-family: var(--head); font-weight: 500; font-size: .95rem;
+    text-decoration: none; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface);
+  }
+  nav.index a:hover { border-color: var(--ink); }
+
+  .search { margin: 28px 0 8px; }
+  .search label { font-family: var(--head); font-weight: 700; display: block; margin-bottom: 6px; }
+  .search input {
+    width: 100%; font: inherit; padding: 12px 14px;
+    border: 2px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: var(--ink);
+  }
+  .search input:focus { border-color: var(--lago); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--lago) 25%, transparent); }
+  #nenhum { display: none; color: var(--muted); margin: 12px 0 0; }
+
+  section { padding: 40px 0 8px; scroll-margin-top: 56px; }
+  section h2 {
+    font-family: var(--head); font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 0 0 6px; letter-spacing: -0.01em;
+  }
+  section > p.intro { margin: 0 0 20px; color: var(--muted); max-width: 60ch; }
+
+  ul.lista { list-style: none; margin: 0; padding: 0; }
+  ul.lista li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 7px solid var(--cor);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .item-img {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px dashed var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-content { flex-grow: 1; min-width: 220px; }
+  ul.lista .nome { font-family: var(--head); font-weight: 700; font-size: 1.15rem; }
+  ul.lista .cient { font-style: italic; color: var(--muted); font-size: .95rem; margin-left: 4px; }
+  ul.lista p { margin: 4px 0 12px; }
+
+  .item-action {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+  .btn-item-whats {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #25d366;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+  }
+  .btn-item-whats:hover { background-color: #20ba5a; }
+  .btn-item-whats svg { width: 16px; height: 16px; fill: currentColor; }
+
+  #ervas, #ossos { --cor: var(--coca); }
+  #ossos { --cor: var(--aguayo); }
+  #alimentos { --cor: var(--quinoa); }
+  #alimentos ul.lista li { --cor: var(--quinoa); }
+
+  .venda { --cor: var(--lago); }
+  table {
+    width: 100%; border-collapse: collapse; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  th { font-family: var(--head); background: var(--lago); color: #fff; font-weight: 700; }
+  @media (prefers-color-scheme: dark) { th { color: #12161f; } }
+  tr:last-child td { border-bottom: none; }
+
+  .calc {
+    margin-top: 24px; padding: 20px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 7px solid var(--lago); border-radius: 8px;
+  }
+  .calc h3 { font-family: var(--head); margin: 0 0 14px; font-size: 1.2rem; }
+  .campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .campos label { font-family: var(--head); font-weight: 500; font-size: .95rem; display: block; margin-bottom: 4px; }
+  .campos input {
+    width: 100%; font: inherit; padding: 10px 12px;
+    border: 2px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink);
+  }
+  .resultado { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 18px; }
+  .resultado div { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+  .resultado span { display: block; color: var(--muted); font-size: .9rem; }
+  .resultado strong { font-family: var(--head); font-size: 1.4rem; }
+
+  .localizacao-box {
+    margin: 36px 0; padding: 22px 24px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 7px solid var(--aguayo); border-radius: 8px;
+  }
+  .localizacao-box h3 { font-family: var(--head); margin: 0 0 8px; font-size: 1.2rem; }
+  .localizacao-box p { margin: 0; color: var(--muted); }
+
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--head);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .whatsapp-float:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+  }
+  .whatsapp-float svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .aviso {
+    margin: 32px 0 0; padding: 18px 20px;
+    border: 2px dashed var(--line); border-radius: 8px;
+    color: var(--muted); font-size: .95rem;
+  }
+  footer { padding: 36px 0 76px; color: var(--muted); font-size: .9rem; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="aguayo" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Ervas e alimentos tradicionais da Bolívia</h1>
+    <p class="lead">Plantas medicinais dos Andes, tubérculos e grãos do Altiplano, com tabela de conversão e atendimento via WhatsApp.</p>
+  </div>
+</header>
+
+<nav class="index" aria-label="Seções do guia">
+  <div class="wrap">
+    <a href="#ervas">Ervas medicinais</a>
+    <a href="#ossos">Ossos e músculos</a>
+    <a href="#alimentos">Alimentos</a>
+    <a href="#venda">Medidas e libras</a>
+    <a href="#local">Localização</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="search">
+    <label for="busca">Buscar no guia</label>
+    <input id="busca" type="search" placeholder="Digite um nome ou um sintoma, como tosse ou rins" autocomplete="off">
+    <p id="nenhum">Nenhum item encontrado. Tente outra palavra.</p>
+  </div>
+
+  <section id="ervas">
+    <h2>Ervas medicinais gerais e tradicionais</h2>
+    <p class="intro">Usadas há gerações para respiração, digestão, fígado e rins.</p>
+    <ul class="lista">
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Wira" alt="Wira Wira" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Wira Wira</span><span class="cient">Gnaphalium vira-vira</span>
+          <p>Sistema respiratório, gripe, tosse, bronquite e dores de garganta.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20a%20erva%20Wira%20Wira." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Coca" alt="Hoja de Coca" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Hoja de Coca</span><span class="cient">Erythroxylum coca</span>
+          <p>Mal da altitude (soroche), digestão, fadiga e dores de estômago.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Hoja%20de%20Coca." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Chacha" alt="Chachacoma" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Chachacoma</span><span class="cient">Senecio eriophyton</span>
+          <p>Dores de estômago intensas, indigestão, cólicas e náuseas.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Chachacoma." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Kullku" alt="Kullku" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Kullku / Cullco</span><span class="cient">Aciachne pulvinata</span>
+          <p>Problemas no fígado, vesícula e purificação do sangue.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Kullku%20/%20Cullco." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Muna" alt="Muña" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Muña</span><span class="cient">Minthostachys mollis</span>
+          <p>A "hortelã dos Andes". Excelente para digestão, gases e dores abdominais.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Muña." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Tirar dúvidas
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item-img"><img src="https://placehold.co/120x120/3b7a4d/ffffff?text=Airampo" alt="Airampo" onerror="this.style.display='none'">Foto</div>
+        <div class="item-content">
+          <span class="nome">Airampo</span><span class="cient">Opuntia soehrensii</span>
+          <p>Febre, aftas, feridas na boca e regulação da pressão arterial.</p>
+        </div>
+        <div class="item-action">
+          <a href="https://wa.me/5511934948179?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20Airampo." class="btn-item-whats" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.198-.198.347-.764.967-.937 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489
